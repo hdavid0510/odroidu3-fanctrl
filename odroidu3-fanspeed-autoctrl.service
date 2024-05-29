@@ -1,0 +1,8 @@
+[Unit]
+Description=ODROID U3 fanspeed control
+
+[Service]
+ExecStart=/usr/local/bin/odroidu3-fanspeed-autoctrl
+
+[Install]
+WantedBy=multi-user.target
