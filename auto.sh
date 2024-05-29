@@ -1,8 +1,15 @@
 #!/bin/bash
 
 TEMP="/sys/devices/virtual/thermal/thermal_zone0/temp"
-MODE="/sys/devices/platform/odroidu2-fan/fan_mode"
-PWM="/sys/devices/platform/odroidu2-fan/pwm_duty"
+
+# For old ODROID U3 system images
+#MODE="/sys/devices/platform/odroidu2-fan/fan_mode"
+#PWM="/sys/devices/platform/odroidu2-fan/pwm_duty"
+
+#For recent/community built ODROID U3 system images (Ubuntu 18.04~)
+MODE="/sys/devices/platform/pwm-fan/fan_mode"
+PWM="/sys/devices/platform/pwm-fan/hwmon/hwmon0/pwm1"
+
 # Fan speeds
 FANSPEED_3=255
 FANSPEED_2=170
@@ -16,7 +23,8 @@ TEMPLEVEL_1=35
 UPDATEDL=3
 
 echo manual > $MODE
-ecjp $FANSPEED_3 > $PWM
+echo $FANSPEED_3 > $PWM
+
 while true; do
 	sleep $UPDATEDL
 	if [ `cat $TEMP` -ge "$TEMPLEVEL_3"000 ]; then
