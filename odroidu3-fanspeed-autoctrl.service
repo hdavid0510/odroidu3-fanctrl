@@ -1,7 +1,8 @@
 [Unit]
-Description=ODROID U3 fanspeed control
+Description=ODROID U3 fan speed(pwm) automatic control
 
 [Service]
+Type=simple
 ExecStart=/usr/local/bin/odroidu3-fanspeed-autoctrl
 
 [Install]
